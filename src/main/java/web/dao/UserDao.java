@@ -21,10 +21,16 @@ public class UserDao {
     }
 
     public void addUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
         entityManager.persist(user);
     }
 
     public void updateUser(int id, User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
         User curUser = entityManager.find(User.class, id);
         if (curUser == null) {
             return;
